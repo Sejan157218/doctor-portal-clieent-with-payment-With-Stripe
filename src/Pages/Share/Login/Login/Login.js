@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import { Alert, Button, CircularProgress, Container, TextField, Typography } from '@mui/material';
 import loginimg from '../../../../images/login.png';
-import { NavLink, useLocation, useHistory } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate  } from 'react-router-dom';
 import useAuth from '../../../hook/useAuth';
 const Login = () => {
     const [loginData, setLoginData] = useState({});
     const location = useLocation();
-    const history = useHistory()
+    const navigate = useNavigate ()
 
     const { user, handlerLoginWithEmail, isLoading, authError, handlerToGoogleLogin } = useAuth();
     const handlerToBlur = e => {
@@ -20,13 +20,12 @@ const Login = () => {
 
     }
     const handlerLoginSubmit = e => {
-        console.log(location,history);
-        handlerLoginWithEmail(loginData.email, loginData.password, location, history);
+        handlerLoginWithEmail(loginData.email, loginData.password, location, navigate);
         e.preventDefault();
     }
 
     const handlerGooglelogin = () => {
-        handlerToGoogleLogin(location, history)
+        handlerToGoogleLogin(location, navigate)
     }
     return (
         <Container>

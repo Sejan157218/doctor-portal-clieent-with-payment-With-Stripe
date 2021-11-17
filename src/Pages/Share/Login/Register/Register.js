@@ -6,10 +6,10 @@ import { NavLink } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 import useAuth from '../../../hook/useAuth';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useHistory } from 'react-router-dom';
+import { navigate } from 'react-router-dom';
 const Register = () => {
     const { user, handlerRegisterToEmail, isLoading, authError } = useAuth();
-    const history =useHistory()
+    const navigate =navigate()
     const [loginData, setLoginData] = useState({});
 
     const handlerToBlur = e => {
@@ -24,7 +24,7 @@ const Register = () => {
             alert('Your password did not match')
             return;
         }
-        handlerRegisterToEmail(loginData.email, loginData.password,loginData.name,history);
+        handlerRegisterToEmail(loginData.email, loginData.password,loginData.name,navigate);
         e.preventDefault();
     };
 

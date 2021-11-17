@@ -3,7 +3,8 @@ import React from 'react';
 import Calendar from '../../Share/Calendar/Calendar';
 import AppoinmentsList from '../AppoinmentsList/AppoinmentsList';
 import { Grid } from '@mui/material';
-const DashBoardHome = ({ date, setDate }) => {
+const DashBoardHome = () => {
+    const [date, setDate] = React.useState(new Date());
     return (
 
         <Grid container spacing={2}>

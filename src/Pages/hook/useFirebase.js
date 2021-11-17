@@ -14,7 +14,7 @@ const useFirebase = () => {
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
     // handler to register
-    const handlerRegisterToEmail = (email, password, name, history) => {
+    const handlerRegisterToEmail = (email, password, name, navigate) => {
         setIsLoading(true)
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -28,7 +28,7 @@ const useFirebase = () => {
                 }).catch((error) => {
                 });
                 setAuthError('')
-                history.push('/')
+                navigate('/')
             })
             .catch((error) => {
                 setAuthError(error.message)
@@ -37,12 +37,12 @@ const useFirebase = () => {
     }
 
     // handler to login with email
-    const handlerLoginWithEmail = (email, password, location, history) => {
+    const handlerLoginWithEmail = (email, password, location, navigate) => {
         setIsLoading(true)
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const destination = location?.state?.from || "/";
-                history.replace(destination);
+                navigate(destination);
                 setAuthError('');
             })
             .catch((error) => {
@@ -51,14 +51,14 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
     // google sign in
-    const handlerToGoogleLogin = (location, history) => {
+    const handlerToGoogleLogin = (location, navigate) => {
         setIsLoading(true)
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
                 saveUser(user.email, user.displayName, 'PUT')
                 const destination = location?.state?.from || "/";
-                history.replace(destination);
+                navigate(destination);
                 setAuthError('');
             }).catch((error) => {
                 setAuthError(error.message);
