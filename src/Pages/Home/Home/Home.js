@@ -3,6 +3,7 @@ import Header from '../../Share/Header/Header';
 import AppointmentBg from '../AppoinmentBg/AppoinmentBg';
 
 import Banner from '../Banner/Banner';
+import OurDoctorHome from '../OurDoctorHome/OurDoctorHome';
 import Services from '../Services/Services';
 
 
@@ -14,6 +15,7 @@ const Home = () => {
             <Banner></Banner>
             <Services></Services>
            <AppointmentBg></AppointmentBg>
+           <OurDoctorHome></OurDoctorHome>
         </div>
     );
 };
